@@ -14,12 +14,12 @@ App({
   
   onShow: function () {
     // 小程序显示时执行
-    console.log('小程序显示');
+    console.log('显示小程序');
   },
   
   onHide: function () {
     // 小程序隐藏时执行
-    console.log('小程序隐藏');
+    console.log('隐藏小程序');
   },
   
   getUserInfo: function () {
