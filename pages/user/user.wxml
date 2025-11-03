@@ -1,0 +1,75 @@
+<!-- 用户页面 -->
+<view class="container">
+  <!-- 用户信息区域 -->
+  <view class="user-info" bindtap="getUserInfo">
+    <image class="avatar" src="{{userInfo ? userInfo.avatarUrl : '/images/avatar-placeholder.png'}}" mode="aspectFill"></image>
+    <view class="user-details">
+      <text class="nickname">{{userInfo ? userInfo.nickName : '点击登录'}}</text>
+      <text class="login-tip">{{userInfo ? '完善个人信息' : '登录后享受更多功能'}}</text>
+    </view>
+    <icon type="arrowright" size="16" color="#999"></icon>
+  </view>
+
+  <!-- 功能菜单 -->
+  <view class="menu-section">
+    <view class="menu-title">我的旅行</view>
+    <view class="menu-list">
+      <view class="menu-item" bindtap="goToFavorites">
+        <view class="menu-icon favorite-icon">
+          <icon type="star" size="20" color="#FFD700"></icon>
+        </view>
+        <text class="menu-text">我的收藏</text>
+        <view class="menu-arrow">
+          <text class="menu-badge">{{favoritesCount > 0 ? favoritesCount : ''}}</text>
+          <icon type="arrowright" size="16" color="#999"></icon>
+        </view>
+      </view>
+      <view class="menu-item" bindtap="goToPlans">
+        <view class="menu-icon plan-icon">
+          <icon type="calendar" size="20" color="#1E90FF"></icon>
+        </view>
+        <text class="menu-text">我的计划</text>
+        <icon type="arrowright" size="16" color="#999"></icon>
+      </view>
+      <view class="menu-item" bindtap="goToHistory">
+        <view class="menu-icon history-icon">
+          <icon type="clock" size="20" color="#52C41A"></icon>
+        </view>
+        <text class="menu-text">浏览历史</text>
+        <icon type="arrowright" size="16" color="#999"></icon>
+      </view>
+    </view>
+  </view>
+
+  <view class="menu-section">
+    <view class="menu-title">设置</view>
+    <view class="menu-list">
+      <view class="menu-item" bindtap="goToSettings">
+        <view class="menu-icon settings-icon">
+          <icon type="setting" size="20" color="#999"></icon>
+        </view>
+        <text class="menu-text">设置</text>
+        <icon type="arrowright" size="16" color="#999"></icon>
+      </view>
+      <view class="menu-item" bindtap="showAbout">
+        <view class="menu-icon about-icon">
+          <icon type="info-circle" size="20" color="#999"></icon>
+        </view>
+        <text class="menu-text">关于我们</text>
+        <icon type="arrowright" size="16" color="#999"></icon>
+      </view>
+      <view class="menu-item" bindtap="showFeedback">
+        <view class="menu-icon feedback-icon">
+          <icon type="form" size="20" color="#999"></icon>
+        </view>
+        <text class="menu-text">意见反馈</text>
+        <icon type="arrowright" size="16" color="#999"></icon>
+      </view>
+    </view>
+  </view>
+
+  <!-- 版本信息 -->
+  <view class="version">
+    <text>旅行攻略 v1.0.0</text>
+  </view>
+</view>

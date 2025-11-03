@@ -1,0 +1,82 @@
+<!-- 详情页 -->
+<view class="container">
+  <!-- 顶部图片轮播 -->
+  <view class="top-images">
+    <swiper indicator-dots="{{true}}" autoplay="{{true}}" interval="5000" duration="1000">
+      <block wx:for="{{destination.images}}" wx:key="index">
+        <swiper-item>
+          <image src="{{item}}" mode="aspectFill" class="detail-img" />
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+
+  <!-- 基本信息 -->
+  <view class="basic-info">
+    <view class="name-section">
+      <text class="destination-name">{{destination.name}}</text>
+      <view class="favorite-btn" bindtap="toggleFavorite">
+        <icon type="{{isFavorited ? 'filled' : 'empty'}}" size="24" color="{{isFavorited ? '#ff4444' : '#999'}}" />
+      </view>
+    </view>
+    <view class="meta">
+      <text class="score">评分: {{destination.score}}</text>
+      <text class="travelers">{{destination.travelers}}人去过</text>
+    </view>
+    <view class="tags">
+      <block wx:for="{{destination.tags}}" wx:key="index">
+        <text class="tag">{{item}}</text>
+      </block>
+    </view>
+    <text class="description">{{destination.description}}</text>
+  </view>
+
+  <!-- 景点介绍 -->
+  <view class="section">
+    <view class="section-title">景点介绍</view>
+    <rich-text class="content" nodes="{{destination.introduction}}"></rich-text>
+  </view>
+
+  <!-- 必游景点 -->
+  <view class="section" wx:if="{{destination.attractions.length > 0}}">
+    <view class="section-title">必游景点</view>
+    <view class="attractions-list">
+      <block wx:for="{{destination.attractions}}" wx:key="index">
+        <view class="attraction-item">
+          <image src="{{item.image}}" mode="aspectFill" class="attraction-img" />
+          <view class="attraction-info">
+            <text class="attraction-name">{{item.name}}</text>
+            <text class="attraction-desc">{{item.description}}</text>
+            <text class="attraction-price">{{item.price}}</text>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+
+  <!-- 旅行建议 -->
+  <view class="section">
+    <view class="section-title">旅行建议</view>
+    <view class="travel-tips">
+      <view class="tip-item">
+        <text class="tip-label">最佳时间</text>
+        <text class="tip-content">{{destination.bestTime}}</text>
+      </view>
+      <view class="tip-item">
+        <text class="tip-label">建议天数</text>
+        <text class="tip-content">{{destination.recommendDays}}天</text>
+      </view>
+      <view class="tip-item">
+        <text class="tip-label">交通方式</text>
+        <text class="tip-content">{{destination.transportation}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部按钮 -->
+  <view class="bottom-actions">
+    <button class="action-btn share-btn" open-type="share">分享</button>
+    <button class="action-btn map-btn" bindtap="openMap">查看地图</button>
+    <button class="action-btn plan-btn" bindtap="createPlan">制定计划</button>
+  </view>
+</view>

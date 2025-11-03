@@ -1,0 +1,68 @@
+<!-- 首页 -->
+<view class="container">
+  <!-- 搜索栏 -->
+  <view class="search-bar">
+    <input type="text" placeholder="搜索目的地、景点" bindinput="onSearchInput" confirm-type="search" bindconfirm="onSearch" />
+    <icon type="search" size="16" class="search-icon" />
+  </view>
+
+  <!-- 轮播图 -->
+  <view class="banner">
+    <swiper indicator-dots="{{true}}" autoplay="{{true}}" interval="5000" duration="1000">
+      <block wx:for="{{banners}}" wx:key="index">
+        <swiper-item>
+          <image src="{{item.image}}" mode="aspectFill" class="banner-img" bindtap="onBannerTap" data-id="{{item.id}}" />
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+
+  <!-- 热门目的地 -->
+  <view class="section">
+    <view class="section-title">
+      <text>热门目的地</text>
+      <navigator url="/pages/destination/destination" class="more">更多 ></navigator>
+    </view>
+    <view class="destination-list">
+      <block wx:for="{{popularDestinations}}" wx:key="id">
+        <view class="destination-item" bindtap="goToDetail" data-id="{{item.id}}">
+          <image src="{{item.image}}" mode="aspectFill" class="destination-img" />
+          <text class="destination-name">{{item.name}}</text>
+          <text class="destination-desc">{{item.description}}</text>
+        </view>
+      </block>
+    </view>
+  </view>
+
+  <!-- 精选攻略 -->
+  <view class="section">
+    <view class="section-title">
+      <text>精选攻略</text>
+      <navigator url="/pages/destination/destination?type=guide" class="more">更多 ></navigator>
+    </view>
+    <view class="guide-list">
+      <block wx:for="{{guides}}" wx:key="id">
+        <view class="guide-item" bindtap="goToDetail" data-id="{{item.id}}">
+          <image src="{{item.image}}" mode="aspectFill" class="guide-img" />
+          <view class="guide-info">
+            <text class="guide-title">{{item.title}}</text>
+            <text class="guide-time">{{item.createTime}}</text>
+            <text class="guide-author">by {{item.author}}</text>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+
+  <!-- 旅游标签 -->
+  <view class="section">
+    <view class="section-title">
+      <text>旅游标签</text>
+    </view>
+    <view class="tag-list">
+      <block wx:for="{{tags}}" wx:key="index">
+        <view class="tag" bindtap="onTagTap" data-tag="{{item}}">{{item}}</view>
+      </block>
+    </view>
+  </view>
+</view>

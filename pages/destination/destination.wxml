@@ -1,0 +1,44 @@
+<!-- 目的地页面 -->
+<view class="container">
+  <!-- 搜索栏 -->
+  <view class="search-bar">
+    <input type="text" placeholder="搜索目的地" value="{{searchKeyword}}" bindinput="onSearchInput" confirm-type="search" bindconfirm="onSearch" />
+    <icon type="search" size="16" class="search-icon" />
+  </view>
+
+  <!-- 筛选标签 -->
+  <view class="filter-tags">
+    <scroll-view scroll-x="true" enable-flex show-scrollbar="false">
+      <view class="tag {{activeTag === '' ? 'active' : ''}}" bindtap="onTagSelect" data-tag="">全部</view>
+      <block wx:for="{{filterTags}}" wx:key="index">
+        <view class="tag {{activeTag === item ? 'active' : ''}}" bindtap="onTagSelect" data-tag="{{item}}">{{item}}</view>
+      </block>
+    </scroll-view>
+  </view>
+
+  <!-- 目的地列表 -->
+  <view class="destination-list">
+    <block wx:if="{{filteredDestinations.length > 0}}">
+      <view wx:for="{{filteredDestinations}}" wx:key="id" class="destination-item" bindtap="goToDetail" data-id="{{item.id}}">
+        <image src="{{item.image}}" mode="aspectFill" class="destination-img" />
+        <view class="destination-info">
+          <text class="destination-name">{{item.name}}</text>
+          <text class="destination-desc">{{item.description}}</text>
+          <view class="destination-meta">
+            <text class="destination-score">评分: {{item.score}}</text>
+            <text class="destination-travelers">{{item.travelers}}人去过</text>
+          </view>
+          <view class="destination-tags">
+            <block wx:for="{{item.tags}}" wx:key="index">
+              <text class="small-tag">{{item}}</text>
+            </block>
+          </view>
+        </view>
+      </view>
+    </block>
+    <view wx:else class="empty-state">
+      <icon type="info-circle" size="60" color="#999" />
+      <text class="empty-text">暂无符合条件的目的地</text>
+    </view>
+  </view>
+</view>
