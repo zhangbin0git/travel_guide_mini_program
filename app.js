@@ -2,7 +2,7 @@
 App({
   onLaunch: function () {
     // 小程序启动时执行的逻辑
-    console.log('小程序启动');
+    console.log('小程序开始运行');
     
     // 可以在这里进行登录、获取用户信息等初始化操作
     this.getUserInfo();
